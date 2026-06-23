@@ -1,0 +1,34 @@
+```Leetcode 728 : Self Dividing numbers```
+
+
+
+
+class Solution {
+    public List<Integer> selfDividingNumbers(int left, int right) {
+        List<Integer> lst = new ArrayList<>();
+
+        while (left <= right) {
+            int ll = left;
+            boolean valid = true;
+
+            while (ll > 0) {
+                int digit = ll % 10;
+
+                if (digit == 0 || left % digit != 0) {
+                    valid = false;
+                    break;
+                }
+
+                ll /= 10;
+            }
+
+            if (valid) {
+                lst.add(left);
+            }
+
+            left++;
+        }
+
+        return lst;
+    }
+}
