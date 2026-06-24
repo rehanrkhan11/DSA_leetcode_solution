@@ -1,0 +1,64 @@
+``` Leetcode202- Happy Number```
+
+One approach
+class Solution {
+    public boolean isHappy(int n) {
+        int iteration = n;
+
+        while(iteration != 1 && iteration != 4){
+
+            int sum = 0;
+            int temp = iteration;
+            while(temp>0){
+                int digit = temp % 10;
+                sum += digit*digit;
+                temp = temp/10;        
+            }
+            iteration = sum;
+
+        }
+        if(iteration == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+}
+
+2nd approach
+
+class Solution {
+    public boolean isHappy(int n) {
+        HashSet<Integer> hs=new HashSet<>();
+        int cur=n;
+        int sum=0;
+        if(n==1){
+            return true;
+        }
+        while(cur!=1){
+            if(hs.contains(cur)){
+                return false;
+            }
+            hs.add(cur);
+
+             while(cur!=0){
+            int digit=cur%10;
+            sum+=digit*digit;
+            cur=cur/10;
+
+        }
+        cur=sum;
+        sum=0;
+        if(cur==1){
+            return true;
+        }
+
+        }
+
+       
+        return false;
+        
+    }
+}
