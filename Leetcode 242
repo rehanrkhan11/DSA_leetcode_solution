@@ -1,0 +1,35 @@
+Leetcode 242::Valid Anagram
+
+
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        int first_word[]=new int[26];
+        if(s.length()!=t.length()){
+            return false;
+        }
+
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            first_word[ch-'a']++;
+        }
+
+        for(int i=0;i<t.length();i++){
+            int ch=t.charAt(i)-'a';
+
+            first_word[ch]--;
+        }
+
+        int j=0;
+
+        while(j<s.length()){
+            int ch=s.charAt(j)-'a';
+
+            if(first_word[ch]!=0){
+                return false;
+            }
+            j++;
+        }
+        return true;
+        
+    }
+}
