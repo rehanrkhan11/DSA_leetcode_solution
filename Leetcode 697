@@ -33,6 +33,46 @@ class Solution {
 
                 ans = Math.min(ans, last - first + 1);
             }
+
+
+class Solution {
+    public int findShortestSubArray(int[] nums) {
+
+        HashMap<Integer, Integer> mp = new HashMap<>();
+
+        // Count frequencies
+        for (int num : nums) {
+            mp.put(num, mp.getOrDefault(num, 0) + 1);
+        }
+
+        // Find degree
+        int degree = 0;
+        for (int freq : mp.values()) {
+            degree = Math.max(degree, freq);
+        }
+
+        int ans = Integer.MAX_VALUE;
+
+        // Check every element having maximum frequency
+        for (Integer key : mp.keySet()) {
+
+            if (mp.get(key) == degree) {
+
+                int first = 0;
+                while (nums[first] != key)
+                    first++;
+
+                int last = nums.length - 1;
+                while (nums[last] != key)
+                    last--;
+
+                ans = Math.min(ans, last - first + 1);
+            }
+        }
+
+        return ans;
+    }
+}
         }
 
         return ans;
