@@ -1,0 +1,27 @@
+Leetcode 2404. Most Frequent Even Element
+
+class Solution {
+    public int mostFrequentEven(int[] nums) {
+        HashMap<Integer, Integer> mp = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] % 2 == 0) {
+                mp.put(nums[i], mp.getOrDefault(nums[i], 0) + 1);
+            }
+        }
+
+        int max = 0;
+        int ans = -1;
+
+        for (int key : mp.keySet()) {
+            int freq = mp.get(key);
+
+            if (freq > max || (freq == max && (ans == -1 || key < ans))) {
+                max = freq;
+                ans = key;
+            }
+        }
+
+        return ans;   // ✅ After the loop
+    }
+}
